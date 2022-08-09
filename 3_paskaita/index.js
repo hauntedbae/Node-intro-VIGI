@@ -11,14 +11,16 @@ app.use(express.json());
 // req - sutrumpinimas request zodzio. Kvietims is vartotojo puses
 // res - sutrumpinimas response zodzio. Grazinimas is serverio dalies
 
+const cars = ["Audi"];
+
 app.get("/", function (req, res) {
-  console.log(req);
-  res.send(["BMW", "Audi", "VW"]);
+  res.send(cars);
 });
 
 app.post("/", (req, res) => {
   console.log(req.body);
-  res.send("OK");
+  cars.push(req.body.car);
+  res.send(req.body);
 });
 
 app.listen(PORT, () => console.log(`The server is running on port ${PORT}`));
